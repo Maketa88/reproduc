@@ -96,7 +96,7 @@ function playpauseTrack() {
 function playTrack() {
   curr_track.play();
   isPlaying = true;
-  wave.classList.add("loader");
+  
   track_art.classList.add("rotate");
   
   playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
