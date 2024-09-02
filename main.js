@@ -96,6 +96,7 @@ function playpauseTrack() {
 function playTrack() {
   curr_track.play();
   isPlaying = true;
+   wave.classList.add("loader");
   
   track_art.classList.add("rotate");
   
