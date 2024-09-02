@@ -92,6 +92,14 @@ function repeatTrack() {
 function playpauseTrack() {
   isPlaying ? pauseTrack() : playTrack();
 }
+mediaElement.play().catch((error) => {
+    if (error.name === 'AbortError') {
+        console.log('La solicitud de reproducción fue abortada');
+    } else {
+        console.error('Ocurrió un error:', error);
+    }
+});
+
 
 function playTrack() {
   curr_track.play();
