@@ -25,26 +25,26 @@ const music_list = [
     img: "/images/GATUBELA.jpg",
     name: "Gatubela",
     artist: "Karol G",
-    music: "/music/GATUBELA.MP3",
+    music: "/music/GATUBELA.mp3",
   },
   {
     img: "/images/AHORA.jpg",
     name: "Ahora",
     artist: "J Balvin",
-    music: "/music/AHORA.MP3",
+    music: "/music/AHORA.mp3",
   },
   
   {
     img: "/images/daga.jpg",
     name: "Daga Adicta",
     artist: "Luigi",
-    music: "/music/DAGA ADICTA.MP3",
+    music: "/music/DAGA ADICTA.mp3",
   },
   {
     img: "/images/PROVENZA.jpg",
     name: "Provenza",
     artist: "Karol G",
-    music: "/music/PROVENZA.MP3",
+    music: "/music/PROVENZA.mp3",
   },
 ];
 
