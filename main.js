@@ -25,25 +25,26 @@ const music_list = [
     img: "/images/GATUBELA.jpg",
     name: "Gatubela",
     artist: "Karol G",
-    music: "/music/GATUBELA.mp3",
+    music: "/music/GATUBELA.MP3",
   },
   {
     img: "/images/AHORA.jpg",
     name: "Ahora",
     artist: "J Balvin",
-    music: "/music/AHORA.mp3",
+    music: "/music/AHORA.MP3",
   },
+  
   {
     img: "/images/daga.jpg",
     name: "Daga Adicta",
     artist: "Luigi",
-    music: "/music/DAGA ADICTA.mp3",
+    music: "/music/DAGA ADICTA.MP3",
   },
   {
     img: "/images/PROVENZA.jpg",
     name: "Provenza",
     artist: "Karol G",
-    music: "/music/PROVENZA.mp3",
+    music: "/music/PROVENZA.MP3",
   },
 ];
 
@@ -53,8 +54,6 @@ function loadTrack(track_index) {
   clearInterval(updateTimer);
   reset();
 
-  pauseTrack(); // Detiene cualquier reproducción previa
-  
   curr_track.src = music_list[track_index].music;
   curr_track.load();
 
@@ -62,11 +61,10 @@ function loadTrack(track_index) {
   track_name.textContent = music_list[track_index].name;
   track_artist.textContent = music_list[track_index].artist;
 
-  now_playing.textContent = "Playing music " + (track_index + 1) + " of " + music_list.length;
-  
+  now_playing.textContent =
+    "Playing music " + (track_index + 1) + " of " + music_list.length;
   updateTimer = setInterval(setUpdate, 1000);
-  curr_track.removeEventListener("ended", nextTrack); // Elimina el anterior
-  curr_track.addEventListener("ended", nextTrack);   // Añade el nuevo
+  curr_track.addEventListener("ended", nextTrack);
 }
 
 function reset() {
@@ -74,7 +72,6 @@ function reset() {
   total_duration.textContent = "00:00";
   seek_slider.value = 0;
 }
-
 function randomTrack() {
   isRandom ? pauseRandom() : playRandom();
 }
@@ -83,36 +80,27 @@ function playRandom() {
   isRandom = true;
   randomIcon.classList.add("randomActive");
 }
-
 function pauseRandom() {
   isRandom = false;
   randomIcon.classList.remove("randomActive");
 }
-
 function repeatTrack() {
   let current_index = track_index;
   loadTrack(current_index);
   playTrack();
 }
-
 function playpauseTrack() {
   isPlaying ? pauseTrack() : playTrack();
 }
 
 function playTrack() {
-  curr_track.play().catch((error) => {
-    if (error.name === 'AbortError') {
-      console.log('La solicitud de reproducción fue abortada');
-    } else {
-      console.error('Ocurrió un error:', error);
-    }
-  });
+  curr_track.play();
   isPlaying = true;
   wave.classList.add("loader");
   track_art.classList.add("rotate");
+  
   playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
 }
-
 function pauseTrack() {
   curr_track.pause();
   isPlaying = false;
@@ -160,10 +148,14 @@ function setUpdate() {
     seek_slider.value = seekPosition;
 
     let currentMinutes = Math.floor(curr_track.currentTime / 60);
-    let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+    let currentSeconds = Math.floor(
+      curr_track.currentTime - currentMinutes * 60
+    );
 
     let durationMinutes = Math.floor(curr_track.duration / 60);
-    let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+    let durationSeconds = Math.floor(
+      (curr_track.duration - durationMinutes * 60)
+    );
 
     if (currentSeconds < 10) {
       currentSeconds = "0" + currentSeconds;
@@ -182,4 +174,3 @@ function setUpdate() {
     total_duration.textContent = durationMinutes + ":" + durationSeconds;
   }
 }
-
